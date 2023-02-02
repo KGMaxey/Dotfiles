@@ -58,6 +58,7 @@ then
     "coreutils" # asdf dependency
     "gpg" # asdf node plugin dependency
     "gawk" # asdf node plugin dependency
+    "exa" # fzf-tab dependency
   )
 
   install_packages () { brew install ${packages[@]}; }
@@ -149,7 +150,10 @@ command="tree-sitter"
 name="AstroNvim"
 location="${HOME}/.config/nvim"
 (check_file "$name" "$location") || {
-  install () { git clone git@github.com:AstroNvim/AstroNvim.git ~/.config/nvim; }
+  install () { 
+    git clone git@github.com:AstroNvim/AstroNvim.git ~/.config/nvim
+    nvim +PackerSync
+  }
   attempt "$name" install
 }
 
