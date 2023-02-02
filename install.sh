@@ -52,7 +52,7 @@ then
   }
 
   packages=(
-    "alacritty" # Terminal
+    "starship" # Terminal prompt
     "neovim" # nvim editor
     "ripgrep" # astronvim dependency
     "coreutils" # asdf dependency
@@ -68,6 +68,14 @@ then
   location="${HOME}/Library/Fonts/Fira Code SemiBold Nerd Font Complete.ttf"
   (check_file "$name" "$location") || {
     install () { brew install homebrew/cask-fonts/font-fira-code-nerd-font; }
+    attempt "$name" install
+  }
+  #
+  # Check for font install as homebrew fails if already installed
+  name="Alacritty"
+  command="alacritty"
+  (check_program "$name" "$command") || {
+    install () { brew install alacritty --no-quarantine; }
     attempt "$name" install
   }
 elif check_apt
@@ -109,7 +117,10 @@ fi
 name="asdf"
 location="${HOME}/.asdf"
 (check_file "$name" "$location") || {
-  install () { git clone https://github.com/asdf-vm/asdf.git "$location"; }
+  install () {
+    git clone https://github.com/asdf-vm/asdf.git "$location"
+    source "${HOME}/.oh-my-zsh/plugins/asdf/asdf.plugin.zsh" # source the asdf plugin to get asdf on PATH. oh-my-zsh handles this by default after reload
+  }
   attempt "$name" install
 }
 
@@ -118,6 +129,7 @@ command="node"
 (check_program "$name" $command) || {
   install() {
     asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+    asdf install nodejs latest
     asdf global nodejs latest
   }
   attempt "$name" install
@@ -143,12 +155,12 @@ location="${HOME}/.config/nvim"
 
 # starship
 # ================================================
-name="starship"
-command="starship"
-(check_program "$name" $command) || {
-  install () { curl -sS https://starship.rs/install.sh | sh; }
-  attempt "$name" 
-}
+# name="starship"
+# command="starship"
+# (check_program "$name" $command) || {
+#   install () { curl -sS https://starship.rs/install.sh | sh; }
+#   attempt "$name" 
+# }
 
 
 echo ''
