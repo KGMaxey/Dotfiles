@@ -20,8 +20,6 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH=$HOME/Library/Python/3.8/bin:$PATH
 
-# Set terminal colors useful for dark mode
-export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
 
 
 # Custom sourcing
@@ -31,6 +29,10 @@ precmd() {
 source $DOTFILES/zsh/omz-config.zsh
 source $DOTFILES/zsh/nvim-config.zsh
 
+# Set terminal colors useful for dark mode
+# export LSCOLORS=exfxcxdxbxegedabagacad
+# export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
+unset LSCOLORS
 
 # Init Starship Prompt - See .config/starship.toml
 eval "$(starship init zsh)"
