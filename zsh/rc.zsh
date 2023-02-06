@@ -13,16 +13,7 @@ else
   export EDITOR='nvim'
 fi
 
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 export PATH=$HOME/Library/Python/3.8/bin:$PATH
-
-# Set terminal colors useful for dark mode
-export LSCOLORS=ExGxBxDxCxEgEdxbxgxcxd
-
 
 # Custom sourcing
 precmd() {
@@ -31,6 +22,8 @@ precmd() {
 source $DOTFILES/zsh/omz-config.zsh
 source $DOTFILES/zsh/nvim-config.zsh
 
+# Reset terminal colors after oh-my-zsh attempts to set 
+unset LSCOLORS
 
 # Init Starship Prompt - See .config/starship.toml
 eval "$(starship init zsh)"

@@ -79,6 +79,18 @@ then
     install () { brew install alacritty --no-quarantine; }
     attempt "$name" install
   }
+
+  name="Alacritty Themes"
+  location="${HOME}/.config/alacritty/themes"
+  (check_file "$name" "$location") || {
+    install () {
+      mkdir -p ${HOME}/.config/alacritty/themes
+      git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+    }
+    attempt "$name" install
+  }
+
+  # TODO: Add mac defaults check for alacritty text smoothing
 elif check_apt
 then
   packages=(
@@ -145,26 +157,14 @@ command="tree-sitter"
   attempt "$name" install
 }
 
-# AstroNvim
-# ================================================
-name="AstroNvim"
-location="${HOME}/.config/nvim"
-(check_file "$name" "$location") || {
-  install () { 
-    git clone git@github.com:AstroNvim/AstroNvim.git ~/.config/nvim
-    nvim +PackerSync
-  }
-  attempt "$name" install
-}
-
 # starship
 # ================================================
-# name="starship"
-# command="starship"
-# (check_program "$name" $command) || {
-#   install () { curl -sS https://starship.rs/install.sh | sh; }
-#   attempt "$name" 
-# }
+name="starship"
+command="starship"
+(check_program "$name" $command) || {
+  install () { curl -sS https://starship.rs/install.sh | sh; }
+  attempt "$name" 
+}
 
 
 echo ''
