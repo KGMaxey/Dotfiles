@@ -71,12 +71,18 @@ then
     install () { brew install homebrew/cask-fonts/font-fira-code-nerd-font; }
     attempt "$name" install
   }
-  #
-  # Check for font install as homebrew fails if already installed
+
+  name="Alacritty Repo"
+  location="${HOME}/dev/alacritty"
+  (check_file "$name" "$location") || {
+    git clone git@github.com:alacritty/alacritty.git ${HOME}/dev/alacritty
+  }
+
+  # Compile and add alacritty app
   name="Alacritty"
   command="alacritty"
   (check_program "$name" "$command") || {
-    install () { brew install alacritty --no-quarantine; }
+    install () { make app && cp -r ${HOME}/dev/alacritty/target/release/osx/Alacritty.app /Applications/ }
     attempt "$name" install
   }
 
@@ -89,8 +95,6 @@ then
     }
     attempt "$name" install
   }
-
-  # TODO: Add mac defaults check for alacritty text smoothing
 elif check_apt
 then
   packages=(
