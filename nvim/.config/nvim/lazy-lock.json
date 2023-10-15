@@ -1,0 +1,23 @@
+{
+  "LuaSnip": { "branch": "master", "commit": "0df29db3543837f8b41597f2640397c5ec792b7b" },
+  "cmp-nvim-lsp": { "branch": "main", "commit": "44b16d11215dce86f253ce0c30949813c0a90765" },
+  "gruvbox.nvim": { "branch": "main", "commit": "477c62493c82684ed510c4f70eaf83802e398898" },
+  "lazy.nvim": { "branch": "main", "commit": "0c53d4673ff02c57a192558325b394cfd9adde0f" },
+  "lsp-zero.nvim": { "branch": "v2.x", "commit": "589c0a9465b38f69d20c058a7b31788068afa48c" },
+  "lualine.nvim": { "branch": "master", "commit": "45e27ca739c7be6c49e5496d14fcf45a303c3a63" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "e7b64c11035aa924f87385b72145e0ccf68a7e0a" },
+  "mason.nvim": { "branch": "main", "commit": "cd7835b15f5a4204fc37e0aa739347472121a54c" },
+  "nvim-autopairs": { "branch": "master", "commit": "748e72c05495a3d30e88a6ef04b21697019a9aa9" },
+  "nvim-cmp": { "branch": "main", "commit": "5dce1b778b85c717f6614e3f4da45e9f19f54435" },
+  "nvim-lspconfig": { "branch": "master", "commit": "8f3ddc448769f563248654a5099c943c7139137e" },
+  "nvim-treesitter": { "branch": "master", "commit": "ad02fbcdfc391017cad462e04e4740d2887cfa2e" },
+  "nvim-ts-autotag": { "branch": "main", "commit": "6be1192965df35f94b8ea6d323354f7dc7a557e4" },
+  "nvim-ufo": { "branch": "main", "commit": "f7eea53e88456403212df074b9aa3148a3908435" },
+  "nvim-web-devicons": { "branch": "master", "commit": "3af745113ea537f58c4b1573b64a429fefad9e07" },
+  "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
+  "promise-async": { "branch": "main", "commit": "e94f35161b8c5d4a4ca3b6ff93dd073eb9214c0e" },
+  "telescope-file-browser.nvim": { "branch": "master", "commit": "6e51d0cd6447cf2525412220ff0a2885eef9039c" },
+  "telescope.nvim": { "branch": "master", "commit": "776b509f80dd49d8205b9b0d94485568236d1192" },
+  "vim-fugitive": { "branch": "master", "commit": "cbe9dfa162c178946afa689dd3f42d4ea8bf89c1" },
+  "which-key.nvim": { "branch": "main", "commit": "6962dae3565369363b59dd51fb206051555fcb4d" }
+}

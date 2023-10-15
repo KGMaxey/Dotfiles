@@ -17,10 +17,10 @@ export PATH=$HOME/Library/Python/3.8/bin:$PATH
 
 # Custom sourcing
 precmd() {
-    source $DOTFILES/zsh/aliases.zsh
+    source $HOME/.zsh/aliases.zsh
 }
-source $DOTFILES/zsh/omz-config.zsh
-source $DOTFILES/zsh/nvim-config.zsh
+source $HOME/.zsh/omz-config.zsh
+source $HOME/.zsh/nvim-config.zsh
 
 # Reset terminal colors after oh-my-zsh attempts to set 
 unset LSCOLORS
