@@ -168,5 +168,9 @@ return {
 			},
 		}
 	},
-  { 'tpope/vim-fugitive' }
+  { 'tpope/vim-fugitive' },
+  {
+    'folke/trouble.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+}
 }
