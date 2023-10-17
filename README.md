@@ -13,6 +13,14 @@ This repo uses the typical stow defaults with `${HOME}/` expected to be the targ
 - Checkout this repo to user home directory
 - Run `stow ${PACKAGE_NAME}` for all packages in repo
 
+## Tmux
+
+Install the [`Tmux Plugin Manager`](https://github.com/tmux-plugins/tpm) then source the Tmux config
+
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
 ## Font
 
 I typically run on Mac devices and enjoy the consistency of the system font. So I use the [Meslo Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Meslo) that is a patched version of the Meslo font that is based on Apple's default Menlo font.
