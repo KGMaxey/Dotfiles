@@ -25,5 +25,10 @@ source $HOME/.zsh/nvim-config.zsh
 # Reset terminal colors after oh-my-zsh attempts to set 
 unset LSCOLORS
 
+complete -C '/opt/homebrew/bin/aws_completer' aws
+complete -C '/opt/homebrew/bin/aws_completer' awslocal
+
+alias python=/opt/homebrew/bin/python3
+
 # Init Starship Prompt - See .config/starship.toml
 eval "$(starship init zsh)"
