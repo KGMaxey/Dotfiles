@@ -134,6 +134,9 @@ return {
 							["<C-p>"] = actions.cycle_history_prev,
 						},
 					},
+          file_ignore_patterns = {
+            "dist"
+          }
 				},
 			})
 		end
@@ -144,6 +147,7 @@ return {
 		opts = {
 			theme = 'gruvbox',
 			sections = {
+        lualine_a = { { 'filename', path = 1 } },
 				lualine_b = { 'buffers' },
 				lualine_c = { 'branch', 'diff', 'diagnostics' }
 			},
@@ -172,5 +176,5 @@ return {
   {
     'folke/trouble.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
-}
+  },
 }

@@ -5,6 +5,7 @@ disabled = false
 [os.symbols]
 Macos = " "
 Linux = " "
+Debian = " "
 
 [directory]
 style = "blue"
