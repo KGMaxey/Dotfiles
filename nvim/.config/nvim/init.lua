@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 require("config.lazy")
 
 vim.o.background = 'dark'
-vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[colorscheme catppuccin-mocha]])
 
 vim.wo.number = true
 vim.opt.tabstop = 2
@@ -12,6 +12,10 @@ vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 vim.opt.cursorline = true
 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+vim.api.nvim_set_option("clipboard", "unnamedplus")
 
 local function map(mode, lhs, rhs, opts)
   local options = { noremap=true, silent=true }
@@ -32,7 +36,7 @@ map('n', 'H', ':bp<CR>')
 map('n', 'L', ':bn<CR>')
 
 -- Delete current Buffer
-map('n', '<leader>d', ':bd<CR>')
+map('n', '<leader>d', ':Bdelete<CR>')
 
 vim.o.foldcolumn = '1' -- '0' is not bad
 vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value

@@ -118,7 +118,7 @@ return {
 			local telescope = require('telescope')
 			local actions = require('telescope.actions')
 
-			vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+			vim.keymap.set('n', '<leader>ff', function () builtin.find_files{hidden=true} end, {})
 			vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 			vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
 			vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
@@ -144,8 +144,9 @@ return {
 		opts = {
 			theme = 'gruvbox',
 			sections = {
-				lualine_b = { 'buffers' },
-				lualine_c = { 'branch', 'diff', 'diagnostics' }
+        lualine_b = { 'buffers' },
+        lualine_c = { 'branch', 'diff', 'diagnostics' },
+        lualine_x = { 'encoding', 'fileformat', 'filetype', {'filename', path = 1 } },
 			},
 			options = { section_separators = '', component_separators = '' }
 		}
@@ -164,13 +165,39 @@ return {
 		keys = {
 			{
 				"<leader>fe",
-				"<cmd>Telescope file_browser <CR>",
+				"<cmd>Telescope file_browser<CR>",
 			},
 		}
 	},
   { 'tpope/vim-fugitive' },
   {
     'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons'
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+    config = function ()
+      require('nvim-tree').setup {
+        update_focused_file = { enable = true },
+        sort = { sorter = 'case_sensitive' },
+        view = { width = 45 },
+        renderer = { group_empty = true },
+        filters = { dotfiles = true }
+      }
+    end,
+    keys = {
+      {
+        "<leader>tt",
+        "<cmd>NvimTreeToggle<CR>"
+      }
+    }
+  },
+  {
+    'famiu/bufdelete.nvim'
+  }
 }
 }

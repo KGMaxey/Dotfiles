@@ -13,7 +13,7 @@ else
   export EDITOR='nvim'
 fi
 
-export PATH=$HOME/Library/Python/3.8/bin:$PATH
+export PATH=/opt/homebrew/bin:$HOME/Library/Python/3.8/bin:$PATH
 
 # Custom sourcing
 precmd() {
