@@ -13,7 +13,7 @@ else
   export EDITOR='nvim'
 fi
 
-export PATH=/opt/homebrew/bin:$HOME/Library/Python/3.8/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/Library/Python/3.8/bin:$PATH
 
 # Custom sourcing
 precmd() {
@@ -32,3 +32,23 @@ alias python=/opt/homebrew/bin/python3
 
 # Init Starship Prompt - See .config/starship.toml
 eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# pnpm
+export PNPM_HOME="/home/kevin/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# >>> coursier install directory >>>
+export PATH="$PATH:/home/kevin/.local/share/coursier/bin"
+# <<< coursier install directory <<<
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

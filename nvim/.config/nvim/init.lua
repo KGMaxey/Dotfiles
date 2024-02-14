@@ -16,6 +16,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.opt_global.shortmess:remove("F")
 
 local function map(mode, lhs, rhs, opts)
   local options = { noremap=true, silent=true }

@@ -172,7 +172,21 @@ return {
   { 'tpope/vim-fugitive' },
   {
     'folke/trouble.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons'
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+  {
+    'scalameta/nvim-metals',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function ()
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = { "scala", "sbt", "java" },
+        callback = function()
+          require("metals").initialize_or_attach({})
+        end,
+        group = nvim_metals_group,
+      })
+    end
   },
   {
     'nvim-tree/nvim-tree.lua',
@@ -199,5 +213,4 @@ return {
   {
     'famiu/bufdelete.nvim'
   }
-}
 }
