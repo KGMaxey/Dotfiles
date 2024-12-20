@@ -1,7 +1,7 @@
-import = ["/Users/kevinmaxey/.config/alacritty/themes/themes/catppuccin-mocha.toml"]
+import = ["/Users/kevinmaxey/.config/alacritty/themes/themes/kanagawa_wave.toml"]
 
 [env]
-TERM = "alacritty"
+TERM = "xterm-256color"
 
 [font]
 size = 12
@@ -65,9 +65,10 @@ mode = "AppCursor"
 mods = "Command"
 
 [window]
-decorations = "buttonless"
+decorations = "Transparent"
 dynamic_padding = true
-opacity = 0.97
+opacity = 0.9
+blur = true
 
 [window.padding]
 x = 5

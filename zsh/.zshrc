@@ -15,6 +15,8 @@ fi
 
 export PATH=/opt/homebrew/bin:$HOME/Library/Python/3.8/bin:$PATH
 
+export PATH="$PATH:$(go env GOPATH)/bin"
+
 # Custom sourcing
 precmd() {
     source $HOME/.zsh/aliases.zsh
@@ -30,5 +32,11 @@ complete -C '/opt/homebrew/bin/aws_completer' awslocal
 
 alias python=/opt/homebrew/bin/python3
 
+export TERM=xterm-256color
+
 # Init Starship Prompt - See .config/starship.toml
 eval "$(starship init zsh)"
+export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+export DENO_INSTALL="/Users/kevinmaxey/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
