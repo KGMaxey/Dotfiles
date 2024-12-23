@@ -67,47 +67,71 @@ return {
       require('nvim-ts-autotag').setup()
     end,
   },
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
-    dependencies = {
-      -- LSP Support
+      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      { 'hrsh7th/nvim-cmp' }, -- Required
+      {
+        'williamboman/mason.nvim',
+        config = function()
+          require('mason').setup({})
+        end
+      }, -- Optional
+      { 
+        'williamboman/mason-lspconfig.nvim',
+        config = function()
+          require('mason-lspconfig').setup({
+            handlers = {
+              function(server_name)
+                require('lspconfig')[server_name].setup({})
+              end
+            }
+          })
+        end
+      }, -- Optional
+      { 'L3MON4D3/LuaSnip' }, -- Required
       { 'neovim/nvim-lspconfig' }, -- Required
-      { 'williamboman/mason.nvim' }, -- Optional
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
       -- Autocompletion
-      { 'hrsh7th/nvim-cmp' }, -- Required
-      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-      { 'L3MON4D3/LuaSnip' }, -- Required
-    },
-    config = function()
-      local lsp = require('lsp-zero')
-      local cmp = require('cmp')
+  -- {
+  --   'VonHeikemen/lsp-zero.nvim',
+  --   branch = 'v2.x',
+  --   dependencies = {
+  --     -- LSP Support
+  --     { 'neovim/nvim-lspconfig' }, -- Required
+  --     { 'williamboman/mason.nvim' }, -- Optional
+  --     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-      lsp.preset({
-        manage_nvim_cmp = {
-          set_extra_mappings = true
-        }
-      })
+  --     -- Autocompletion
+  --     { 'hrsh7th/nvim-cmp' }, -- Required
+  --     { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+  --     { 'L3MON4D3/LuaSnip' }, -- Required
+  --   },
+  --   config = function()
+  --     local lsp = require('lsp-zero')
+  --     local cmp = require('cmp')
 
-      lsp.on_attach(function(_, bufnr)
-        lsp.default_keymaps({ buffer = bufnr })
-      end)
+  --     lsp.preset({
+  --       manage_nvim_cmp = {
+  --         set_extra_mappings = true
+  --       }
+  --     })
 
-      lsp.setup()
+  --     lsp.on_attach(function(_, bufnr)
+  --       lsp.default_keymaps({ buffer = bufnr })
+  --     end)
 
-      cmp.setup({
-        mapping = {
-          ['<CR>'] = cmp.mapping.confirm({ select = false })
-        },
-        window = {
-          completion = cmp.config.window.bordered(),
-          documentation = cmp.config.window.bordered()
-        }
-      })
-    end
-  },
+  --     lsp.setup()
+
+  --     cmp.setup({
+  --       mapping = {
+  --         ['<CR>'] = cmp.mapping.confirm({ select = false })
+  --       },
+  --       window = {
+  --         completion = cmp.config.window.bordered(),
+  --         documentation = cmp.config.window.bordered()
+  --       }
+  --     })
+  --   end
+  -- },
   {
     'nvim-telescope/telescope.nvim',
     -- tag = '0.1.2',
@@ -231,5 +255,22 @@ return {
   },
   {
     'famiu/bufdelete.nvim'
+  },
+  {
+    "christoomey/vim-tmux-navigator",
+    cmd = {
+      "TmuxNavigateLeft",
+      "TmuxNavigateDown",
+      "TmuxNavigateUp",
+      "TmuxNavigateRight",
+      "TmuxNavigatePrevious",
+    },
+    keys = {
+      { "<c-h>", "<cmd><C-U>TmuxNavigateLeft<cr>" },
+      { "<c-j>", "<cmd><C-U>TmuxNavigateDown<cr>" },
+      { "<c-k>", "<cmd><C-U>TmuxNavigateUp<cr>" },
+      { "<c-l>", "<cmd><C-U>TmuxNavigateRight<cr>" },
+      { "<c-\\>", "<cmd><C-U>TmuxNavigatePrevious<cr>" },
+    },
   }
 }
