@@ -15,7 +15,7 @@ fi
 
 export PATH=/opt/homebrew/bin:$HOME/Library/Python/3.8/bin:$PATH
 
-export PATH="$PATH:$(go env GOPATH)/bin"
+# export PATH="$PATH:$(go env GOPATH)/bin"
 
 # Custom sourcing
 precmd() {
@@ -34,9 +34,16 @@ alias python=/opt/homebrew/bin/python3
 
 export TERM=xterm-256color
 
-# Init Starship Prompt - See .config/starship.toml
-eval "$(starship init zsh)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 export PATH="/usr/local/opt/postgresql@15/bin:$PATH"
 export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 export DENO_INSTALL="/Users/kevinmaxey/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
+
+# Init Starship Prompt - See .config/starship.toml
+eval "$(starship init zsh)"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -67,7 +67,75 @@ return {
       require('nvim-ts-autotag').setup()
     end,
   },
-      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+      {
+        'hrsh7th/cmp-nvim-lsp',
+        config = function()
+          local cmp = require('cmp')
+
+
+-- Add cmp_nvim_lsp capabilities settings to lspconfig
+-- This should be executed before you configure any language server
+local lspconfig_defaults = require('lspconfig').util.default_config
+lspconfig_defaults.capabilities = vim.tbl_deep_extend(
+  'force',
+  lspconfig_defaults.capabilities,
+  require('cmp_nvim_lsp').default_capabilities()
+)
+
+          local has_words_before = function()
+  unpack = unpack or table.unpack
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
+          cmp.setup({
+            sources = {
+              {name = 'nvim_lsp'},
+            },
+            snippet = {
+              expand = function(args)
+                -- You need Neovim v0.10 to use vim.snippet
+                vim.snippet.expand(args.body)
+              end,
+            },
+            mapping = cmp.mapping.preset.insert({
+              ['<CR>'] = cmp.mapping.confirm({ select = false }),
+                  ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+      end
+    end, { "i", "s" }),
+
+    ["<S-Tab>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
+      end
+    end, { "i", "s" }),
+              -- ['<Tab>'] = cmp.mapping.scroll_docs(-4),
+              -- ['<S-Tab>'] = cmp.mapping.scroll_docs(4),
+            }),
+            window = {
+              completion = cmp.config.window.bordered(),
+              documentation = cmp.config.window.bordered()
+            }
+          })
+  --     cmp.setup({
+  --       mapping = {
+  --         ['<CR>'] = cmp.mapping.confirm({ select = false })
+  --       },
+  --       window = {
+  --         completion = cmp.config.window.bordered(),
+  --         documentation = cmp.config.window.bordered()
+  --       }
+  --     })
+        end
+      }, -- Required
       { 'hrsh7th/nvim-cmp' }, -- Required
       {
         'williamboman/mason.nvim',
